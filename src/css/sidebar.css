@@ -1,0 +1,97 @@
+.sidebar{
+    width: 300px;
+    min-height: 200px;
+    border: 1px solid black;
+}
+
+.games{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.games img{
+    height: 100px;
+    width: 100px
+}
+
+.allSongs{
+    height: 100%;
+}
+
+.allSongs img{
+    height: 100%;
+    width: 100%;
+}
+
+.artists{
+    height: 100%;
+}
+
+.artists img{
+    height: 100%;
+    width: 100%;
+}
+
+.albums{
+    height: 100%;
+}
+
+.albums img{
+    height: 100%;
+    width: 100%;
+}
+
+.settings{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+.settings img{
+    height: 100px;
+    width: 100px
+}
+
+.menuContainer{
+    width: 50%;
+    height:100%;
+    /* border: 1px solid black; */
+    border-right: 1px solid black;
+    background-color: white;
+    color:black
+}
+
+.menuContainer button{
+    width: 100%;
+}
+.nav-link{
+    color: black;
+}
+
+.menuContainer li{
+    margin-top: 10px;
+    list-style: none;
+}
+.menuContainer li a{
+    color: black;
+}
+.menuContainer>ul li:first-child{
+    font-weight: bold;
+}
+
+.menuContainer>ul li:hover{
+    background-color: blue;
+}
+
+.coverflow{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}

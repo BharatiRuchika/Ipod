@@ -1,0 +1,58 @@
+.container1{
+    height: 200px;
+    background-color: rgb(185,185,185); 
+    box-sizing: border-box;
+    width:300px;
+    padding-left: 50px;
+    /* margin-top: 30vh; */
+}
+
+.container1 i {
+    color: rgb(185,185,185); 
+}
+
+.circle {
+    border-radius: 50%;
+    height:200px;
+    width:200px;
+    padding: 50px;
+    box-sizing: border-box;
+    background-color: white;
+    
+    
+}
+
+.innerCircle{
+    background-color: rgb(185,185,185); 
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    position: relative
+    
+}
+
+.forward{
+    position: absolute;
+    top: 44%;
+    right: -29px;
+}
+
+.backward{
+    position: relative;
+    left: -28px;
+    top: 46px;
+}
+
+.menu{
+    position: absolute;
+    top: -32px;
+    right: 27px;
+    color: rgb(185,185,185);
+    font-weight: bold;
+}
+
+.pauseResume{
+    position: relative;
+    left: 32px;
+    top: 86px;
+}
