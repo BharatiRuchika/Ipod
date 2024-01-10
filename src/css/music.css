@@ -2,10 +2,12 @@
     background-color: #E3F2FD;
 }
 
-
-
 /* heading for music */
-h3{
+.songHeading{
     margin: 1px;
-    align-items: center;
+    display:flex;
+    /* align-items: center; */
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }

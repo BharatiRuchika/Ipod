@@ -3,6 +3,7 @@ import React from "react";
 import Sidebar from "./components/sidebar";
 import Music from "./components/music";
 
+// Import songs
 import song1 from "./static/songs/Post Malone - White Iverson.mp3"
 import song2 from "./static/songs/John Denver - Country Roads.mp3"
 import song3 from "./static/songs/Sigrid - High Five.mp3"
@@ -19,14 +20,14 @@ class App extends React.Component {
     constructor() {
       super()
       this.state = {
-        menu : ["coverflow", { music: ["allSongs","artists","albums"] },"games","settings"],
-        activeIndex:0,
-        isMenu:true,
+        menu : ["coverflow", { music: ["allSongs","artists","albums"] },"games","settings"], //menu Items
+        activeIndex:0,  //Active list item
+        isMenu:true,         
         isInnerMenu:false,
         isSongMenu:false,
         menuItem:'menu',
         activeItem:'coverflow',
-        songItemsUrl: [song1, song2, song3,song4,song5,],  
+        songItemsUrl: [song1, song2, song3,song4,song5],    //songs list
         songImgItemsUrl: [song1Img, song2Img, song3Img, song4Img, song5Img],
         playing:false,
         songItems:[
@@ -39,29 +40,29 @@ class App extends React.Component {
         songIndex: 0, //current song
         activeSong:{'song-0':'Post Malone - White Iverson'},
         songImgUrl: song1Img,
-        songUrl: song1,
-        activeMusic:0,
+        songUrl: song1,  //current song url
+        activeMusic:0,    //index of active music
         audio: new Audio(song1), //current audio file
         currentAudio:new Audio(song1)
       }
     }
 
+    // FUNCTION FOR : UPDATE ACTIVE MENU WHILE ROTATING ON THE TRACK-WHEEL
     updateActiveMenu = (direction) => {
+      console.log('im in updateActiveMenu')
         let {isMenu, isInnerMenu, isSongMenu} = this.state
         let min = 0;
         let max = 0;
         let activeItem = ""
+
+        // checking if isMenu is true or not
         if (isMenu){
-          console.log('im in menu')
           max = 3
           if (direction === 1) {
-            console.log('im in direction 1')
-            if (this.state.activeIndex > max) {
-              console.log('activeIndex',this.state.activeIndex)
+            if (this.state.activeIndex >= max) {
               this.setState({ activeIndex: min,activeItem:'coverflow' })
             } else {
               let activeIndex = this.state.activeIndex + 1
-              console.log('activeIndex', activeIndex)
               if (activeIndex==1){
                 activeItem = 'music'
               }else{
@@ -71,13 +72,10 @@ class App extends React.Component {
               this.setState({ activeIndex:activeIndex,activeItem:activeItem })
             }
           } else {
-            console.log('im in direction 0')
-            if (this.state.activeIndex < min) {
-              console.log('activeIndex',this.state.activeIndex)
+            if (this.state.activeIndex <= min) {
               this.setState({ activeIndex: max,activeItem:'settings' })
             } else {
               let activeIndex = this.state.activeIndex - 1
-              console.log('activeIndex', activeIndex)
               if (activeIndex==1){
                 activeItem = 'music'
               }else{
@@ -86,11 +84,12 @@ class App extends React.Component {
               this.setState({ activeIndex: activeIndex,activeItem:activeItem })
             }
           }
-        }else if(isInnerMenu){
-          console.log('im in innerMeny')
+        }
+        // checking if isInnerMenu is true or not
+        else if(isInnerMenu){
           max = 2
           if (direction === 1) {
-            if (this.state.activeIndex > max) {
+            if (this.state.activeIndex >= max) {
               this.setState({ activeIndex: min,activeItem:'allSongs' })
             } else {
               let activeIndex = this.state.activeIndex + 1
@@ -99,59 +98,51 @@ class App extends React.Component {
               this.setState({ activeIndex: activeIndex,activeItem:activeItem })
             }
           } else {
-            if (this.state.activeIndex < min) {
-              this.setState({ activeIndex: max,activeItem:'artists' })
+            if (this.state.activeIndex <= min) {
+              this.setState({ activeIndex: max,activeItem:'albums' })
             } else {
               let activeIndex = this.state.activeIndex - 1
               let activeItem = this.state.menu[1].music[activeIndex] 
               this.setState({ activeIndex: activeIndex,activeItem:activeItem })
             }
           }
-        }else if(isSongMenu){
+        }
+        // checking if isSongMenu is true or not
+        else if(isSongMenu){
           max = 4
           if (direction === 1) {
-            if (this.state.activeIndex > max) {
+            if (this.state.activeIndex >= max) {
               let audio = new Audio(this.state.songItemsUrl[0])
               this.setState({ activeIndex: min,activeItem:'song-0',audio:audio,playing:false })
             } else {
               let activeIndex = this.state.activeIndex + 1
               let activeItem = `song-${activeIndex}` 
               let audio = new Audio(this.state.songItemsUrl[activeIndex])
-              console.log('activeItem',activeItem)
               this.setState({ activeIndex: activeIndex,activeItem:activeItem,audio:audio,playing:false })
             }
           }else{
-            if (this.state.activeIndex < min) {
+            if (this.state.activeIndex <= min) {
               let audio = new Audio(this.state.songItemsUrl[4])
               this.setState({ activeIndex: max,activeItem:'song-4',audio:audio,playing:false })
             } else {
               let activeIndex = this.state.activeIndex - 1
               let activeItem = `song-${activeIndex}` 
-              console.log('activeItem',activeItem)
               let audio = new Audio(this.state.songItemsUrl[activeIndex])
               this.setState({ activeIndex: activeIndex,activeItem:activeItem,audio:audio,playing:false })
             }
           }
         }
-        console.log('activeItem',activeItem)
       }
 
-    updateActive = (activeIndex,activeItem)=>{
-      console.log('activeIndex',activeIndex)
-      this.setState(
-        (prevState) => ({
-          ...prevState,
-          activeIndex:activeIndex,
-          activeItem:activeItem
-        }))
-    }
 
+    // FUNCTION FOR : CHANGE MENU BACKWARDS OR FORWARDS on PRESS OF CENTER BUTTON
     handleClick = ()=>{
       let menuItem = ""
       let {isMenu, isInnerMenu, isSongMenu} = this.state
       if(isMenu){
+        // console.log('im in is menu')
+        // console.log('activeIndex',this.state.activeIndex)
         if(this.state.activeIndex==1){
-          // console.log('menu',this.state.menu)
           menuItem = this.state.menu[1].music[0]
           this.setState(
             (prevState) => ({
@@ -163,34 +154,51 @@ class App extends React.Component {
               isMenu:false
             }))
         }else{
+          // console.log('im in ismenu else')
           menuItem = this.state.menu[this.state.activeIndex]
-          console.log('menuItem',menuItem)
+          // console.log('menuItem',menuItem)
           this.setState(
             (prevState) => ({
               ...prevState,
               menuItem : menuItem,
+              activeItem:menuItem,
+              activeIndex:this.state.activeIndex
             }))
         }
-      }else if(isInnerMenu){
-        console.log('im in else')
+      }else{
+        // console.log('im in isInnerMenu')
         menuItem = this.state.menu[1].music[this.state.activeIndex]
-        console.log('menuItem',menuItem)
         this.setState(
           (prevState) => ({
             ...prevState,
             menuItem : menuItem,
+            activeItem:menuItem,
             isInnerMenu: false,
             isMenu: false,
             isSongMenu:true
           }))
       }
     }
-
+   
+    // FUNCTION FOR : CHANGING MENU
     handleMenu = ()=>{
-      console.log('im in menu')
-      console.log('state',this.state)
-      let {isMenu, isInnerMenu, activeIndex} = this.state
-      if(isInnerMenu && !isMenu){
+      // console.log('im in menu')
+      let {isMenu, isInnerMenu, isSongMenu, activeIndex, activeItem} = this.state
+      //  console.log('isMenu',isMenu)
+      //  console.log('isInnerMenu',isInnerMenu)
+      //if isSongMenu is true then render music component
+      if (isSongMenu && !isInnerMenu && !isMenu){
+        this.setState(
+          (prevState) => ({
+            ...prevState,
+            activeIndex : 0,
+            isSongMenu : !isSongMenu,
+            isInnerMenu : !isInnerMenu,
+            menuItem : 'music',
+            activeItem:'allSongs'
+          }))
+      }
+      if(isInnerMenu && !isMenu && !isSongMenu){
         this.setState(
           (prevState) => ({
             ...prevState,
@@ -202,25 +210,28 @@ class App extends React.Component {
           }))
       }
 
-      if(!isInnerMenu && !isMenu){
+      if(!isInnerMenu && !isMenu && !isSongMenu){
         this.setState(
           (prevState) => ({
             ...prevState,
-            activeIndex : this.state.activeIndex,
+            activeIndex : activeIndex,
             isMenu : isMenu,
             isInnerMenu : !isInnerMenu,
             menuItem : 'music',
-            activeItem:this.state.activeItem
+            activeItem: activeItem
           }))
       }
 
-      if(!isInnerMenu && isMenu){
+      if(!isInnerMenu && isMenu && !isSongMenu){
+        // console.log("im here")
+        // console.log('state',this.state)
+        // console.log('activeItem',activeItem)
         this.setState(
           (prevState) => ({
             ...prevState,
-            activeIndex : this.state.activeIndex,
+            activeIndex : activeIndex,
             menuItem : 'menu',
-            activeItem:this.state.activeItem
+            activeItem: activeItem
           }))
       }
     }
@@ -245,18 +256,52 @@ class App extends React.Component {
     }
   }
 
+
+  // FUNCTION FOR : ON PRESS OF BACKWARD BUTTON TRACKS ARE SEEKED BACKWARD
+  handleReverse=(e)=>{
+    console.log('im in handle reverse')
+    let min = 0
+    let max = 4
+    if (this.state.activeIndex <= min) {
+      let audio = new Audio(this.state.songItemsUrl[4])
+      this.setState({ activeIndex: max,activeItem:'song-4',audio:audio,playing:false })
+    } else {
+      let activeIndex = this.state.activeIndex - 1
+      let activeItem = `song-${activeIndex}` 
+      let audio = new Audio(this.state.songItemsUrl[activeIndex])
+      this.setState({ activeIndex: activeIndex,activeItem:activeItem,audio:audio,playing:false })
+    }
+  }
+
+
+
+  // FUNCTION FOR : ON PRESS OF FORWARD BUTTON TRACKS ARE SEEKED FORWARD
+  handleForward=(e)=>{
+    console.log('im in handle forward')
+    let min = 0
+    let max = 3
+    if (this.state.activeIndex > max) {
+      let audio = new Audio(this.state.songItemsUrl[0])
+      this.setState({ activeIndex: min,activeItem:'song-0',audio:audio,playing:false })
+    } else {
+      let activeIndex = this.state.activeIndex + 1
+      let activeItem = `song-${activeIndex}` 
+      let audio = new Audio(this.state.songItemsUrl[activeIndex])
+      this.setState({ activeIndex: activeIndex,activeItem:activeItem,audio:audio,playing:false })
+    }
+  }
+    
+  // FUNCTION FOR : RENDERING APP
     render(){
-      return(<>
+      return(<div className="App">
           {this.state.isMenu?(<>
             <Sidebar updateActive={this.updateActive} handleClick={this.handleClick} handleMenu={this.handleMenu} data={this.state}/>
           </>):(<>
             <Music updateActive={this.updateActive} handleClick={this.handleClick} handleMenu={this.handleMenu} data={this.state} songItems={this.songItems} togglePlayPause={this.togglePlayPause}/>
           </>)}
-          <Wheel updateActiveMenu={this.updateActiveMenu} updateActive={this.updateActive} handleClick={this.handleClick} handleMenu={this.handleMenu} data={this.state} togglePlayPause={this.togglePlayPause}/>
-      </>)
+          <Wheel updateActiveMenu={this.updateActiveMenu} updateActive={this.updateActive} handleClick={this.handleClick} handleMenu={this.handleMenu} data={this.state} togglePlayPause={this.togglePlayPause} handleReverse={this.handleReverse} handleForward={this.handleForward} />
+      </div>)
     }
-
-
 }
 
 export default App

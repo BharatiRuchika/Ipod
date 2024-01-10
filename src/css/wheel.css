@@ -1,10 +1,10 @@
-.container1{
+/* .container1{
     height: 200px;
-    background-color: rgb(185,185,185); 
+    background-color: rgb(210, 210, 210); 
     box-sizing: border-box;
     width:300px;
     padding-left: 50px;
-    /* margin-top: 30vh; */
+    margin-top: 20px;
 }
 
 .container1 i {
@@ -18,12 +18,11 @@
     padding: 50px;
     box-sizing: border-box;
     background-color: white;
-    
-    
+     
 }
 
 .innerCircle{
-    background-color: rgb(185,185,185); 
+    background-color: rgb(210, 210, 210);
     border-radius: 50%;
     width: 100%;
     height: 100%;
@@ -55,4 +54,76 @@
     position: relative;
     left: 32px;
     top: 86px;
+} */
+
+
+
+.wheel-container{
+    position: relative;
+    width: 200px;
+    height: 200px;  
+    margin-top: auto;
+    margin-bottom: 20px;
+    display: flex;
+}
+
+/* wheel with border radius 50% */
+.wheel{
+    cursor: pointer;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    background-color: white;   
+    border-radius: 50%;
+}
+
+/* all controls */
+.controll{
+    color: rgb(210, 210, 210);
+    font-weight: 900;
+    position: absolute;
+}
+
+
+/* menu button */
+#menu{
+    left: 38%;
+    top: 11%;
+    font-weight: 900;
+    font-size: 18px;
+    width: 40px;
+    height: 20px;
+}
+
+/* reverse button */
+#reverse{
+    left: 10%;
+    top: 45%;
+    font-size: 23px;
+}
+
+/* forward button */
+#forward{
+    right: 10%;
+    top: 45%;
+    font-size: 23px;
+}
+
+/* play-pause button */
+#play-pause{
+    bottom: 11%;
+    left: 44%;
+    width: 40px;
+    height: 20px;
+}
+
+/* center button */
+.blank{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color:  rgb(210, 210, 210);
+    position: absolute;
+    left: 31%;
+    top: 30%;
 }
