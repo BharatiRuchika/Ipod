@@ -111,24 +111,24 @@ class App extends React.Component {
         else if(isSongMenu){
           max = 4
           if (direction === 1) {
-            if (this.state.activeIndex >= max) {
+            if (this.state.songIndex >= max) {
               let audio = new Audio(this.state.songItemsUrl[0])
-              this.setState({ activeIndex: min,activeItem:'song-0',audio:audio,playing:false })
+              this.setState({ songIndex: min,activeSong:'song-0',audio:audio,playing:false })
             } else {
-              let activeIndex = this.state.activeIndex + 1
-              let activeItem = `song-${activeIndex}` 
-              let audio = new Audio(this.state.songItemsUrl[activeIndex])
-              this.setState({ activeIndex: activeIndex,activeItem:activeItem,audio:audio,playing:false })
+              let songIndex = this.state.songIndex + 1
+              let activeSong = `song-${songIndex}` 
+              let audio = new Audio(this.state.songItemsUrl[songIndex])
+              this.setState({ songIndex: songIndex,activeSong:activeSong,audio:audio,playing:false })
             }
           }else{
-            if (this.state.activeIndex <= min) {
+            if (this.state.songIndex <= min) {
               let audio = new Audio(this.state.songItemsUrl[4])
-              this.setState({ activeIndex: max,activeItem:'song-4',audio:audio,playing:false })
+              this.setState({ songIndex: max,activeSong:'song-4',audio:audio,playing:false })
             } else {
-              let activeIndex = this.state.activeIndex - 1
-              let activeItem = `song-${activeIndex}` 
-              let audio = new Audio(this.state.songItemsUrl[activeIndex])
-              this.setState({ activeIndex: activeIndex,activeItem:activeItem,audio:audio,playing:false })
+              let songIndex = this.state.songIndex - 1
+              let activeSong = `song-${activeSong}` 
+              let audio = new Audio(this.state.songItemsUrl[songIndex])
+              this.setState({ songIndex: songIndex,activeSong:activeSong,audio:audio,playing:false })
             }
           }
         }

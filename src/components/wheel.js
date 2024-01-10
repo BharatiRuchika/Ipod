@@ -112,9 +112,11 @@ class Wheel extends Component {
         console.log('i here')
         handleClick();
     });
+    
     activeRegion.bind(wheel, 'rotate', function (e) {
         wheelControll(e);
     });
+
     activeRegion.bind(playPause, 'tap', function (e) {
         togglePlayPause();
     });
