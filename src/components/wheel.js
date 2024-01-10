@@ -40,7 +40,7 @@ class Wheel extends Component {
 
     // Bind components with zingtouch logic
     componentDidMount(){
-        // const { handleReverse,handleForward,handleClick,togglePlayPause, handleMenu} = this.props;
+       
         // var containerElement = document.getElementsByClassName('container1')[0];
         // var activeRegion = ZingTouch.Region(containerElement);
         // var childElement = document.getElementsByClassName('circle')[0];
@@ -86,7 +86,47 @@ class Wheel extends Component {
         //     e.stopPropagation();
         //     handleForward(e);
         // });
-    }
+
+
+    const { handleReverse,handleForward,handleClick,togglePlayPause, handleMenu} = this.props;
+    const wheelControll = this.wheelControll;
+    const wheel = document.getElementById("wheel");
+    const activeRegion = ZingTouch.Region(wheel);
+    const menuIcon = document.getElementById("menu");
+    const playPause = document.getElementById("play-pause");
+    const reverse = document.getElementById("reverse");
+    const forward = document.getElementById("forward");
+    const blank = document.getElementById("blank")
+    console.log('blank',blank)
+    const longTapGesture = new ZingTouch.Tap({
+        maxDelay:10000,
+        numInputs: 1,
+        tolerance: 1,
+    })
+
+    activeRegion.bind(menuIcon, 'tap', function (e) {
+        handleMenu();
+    });
+
+    activeRegion.bind(blank, 'tap', function (e) {
+        console.log('i here')
+        handleClick();
+    });
+    activeRegion.bind(wheel, 'rotate', function (e) {
+        wheelControll(e);
+    });
+    activeRegion.bind(playPause, 'tap', function (e) {
+        togglePlayPause();
+    });
+
+    activeRegion.bind(reverse, longTapGesture, function (e) {
+        handleReverse(e);
+    });
+
+    activeRegion.bind(forward, longTapGesture, function (e) {
+        handleForward(e);
+    });
+}
 
     //FUNCTION FOR-CHANGING THE MENU ON CLICK ON THE MENU BUTTON OF WHEEL
     // handleMenu = (event)=>{
@@ -146,9 +186,9 @@ class Wheel extends Component {
 
 
 <div className="wheel-container" id="wheel-container">
-                <div style={{backgroundColor:'red'}} className="wheel" id="wheel" >
+                <div className="wheel" id="wheel" >
                     <div className="controll" id="menu">
-                        <div >MENU</div>
+                        <div>MENU</div>
                     </div>
                     <div className="controll" id="forward">
                         <i  className="fa fa-fast-forward"></i>
@@ -162,9 +202,10 @@ class Wheel extends Component {
                     <div className="controll" id="reverse">
                         <i  className="fa fa-fast-backward"></i>
                     </div>
+                    <div  className="blank" id="blank" ></div>
                 </div>
 
-                <div  className="blank" id="blank" ></div>
+               
             </div>
         </>)
     }

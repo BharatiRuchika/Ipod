@@ -27,7 +27,7 @@ class App extends React.Component {
         isSongMenu:false,
         menuItem:'menu',
         activeItem:'coverflow',
-        songItemsUrl: [song1, song2, song3,song4,song5],    //songs list
+        songItemsUrl: [song1, song2, song3, song4, song5],    //songs list
         songImgItemsUrl: [song1Img, song2Img, song3Img, song4Img, song5Img],
         playing:false,
         songItems:[
@@ -38,7 +38,7 @@ class App extends React.Component {
             {'song-4':'Rick Astley - Never Gonna Give You Up'}
         ],
         songIndex: 0, //current song
-        activeSong:{'song-0':'Post Malone - White Iverson'},
+        activeSong:'song-0',
         songImgUrl: song1Img,
         songUrl: song1,  //current song url
         activeMusic:0,    //index of active music
@@ -137,6 +137,10 @@ class App extends React.Component {
 
     // FUNCTION FOR : CHANGE MENU BACKWARDS OR FORWARDS on PRESS OF CENTER BUTTON
     handleClick = ()=>{
+      if(this.state.isSongMenu){
+        return
+      }
+      console.log('im in handleClick')
       let menuItem = ""
       let {isMenu, isInnerMenu, isSongMenu} = this.state
       if(isMenu){
@@ -182,11 +186,10 @@ class App extends React.Component {
    
     // FUNCTION FOR : CHANGING MENU
     handleMenu = ()=>{
-      // console.log('im in menu')
       let {isMenu, isInnerMenu, isSongMenu, activeIndex, activeItem} = this.state
-      //  console.log('isMenu',isMenu)
-      //  console.log('isInnerMenu',isInnerMenu)
-      //if isSongMenu is true then render music component
+      if(this.state.menuItem=="menu"){
+        return
+      }
       if (isSongMenu && !isInnerMenu && !isMenu){
         this.setState(
           (prevState) => ({
@@ -223,9 +226,6 @@ class App extends React.Component {
       }
 
       if(!isInnerMenu && isMenu && !isSongMenu){
-        // console.log("im here")
-        // console.log('state',this.state)
-        // console.log('activeItem',activeItem)
         this.setState(
           (prevState) => ({
             ...prevState,
@@ -259,7 +259,9 @@ class App extends React.Component {
 
   // FUNCTION FOR : ON PRESS OF BACKWARD BUTTON TRACKS ARE SEEKED BACKWARD
   handleReverse=(e)=>{
-    console.log('im in handle reverse')
+    if(this.state.isMenu || this.state.isInnerMenu){
+      return
+    }
     let min = 0
     let max = 4
     if (this.state.activeIndex <= min) {
@@ -277,7 +279,9 @@ class App extends React.Component {
 
   // FUNCTION FOR : ON PRESS OF FORWARD BUTTON TRACKS ARE SEEKED FORWARD
   handleForward=(e)=>{
-    console.log('im in handle forward')
+    if(this.state.isMenu || this.state.isInnerMenu){
+      return
+    }
     let min = 0
     let max = 3
     if (this.state.activeIndex > max) {

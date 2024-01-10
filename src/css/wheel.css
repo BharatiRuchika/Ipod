@@ -75,6 +75,7 @@
     height: 200px;
     background-color: white;   
     border-radius: 50%;
+    color: black;
 }
 
 /* all controls */
@@ -126,4 +127,5 @@
     position: absolute;
     left: 31%;
     top: 30%;
+    cursor: pointer;
 }
