@@ -4,48 +4,10 @@ import music from "../css/music.css"
 class Music extends Component{
     constructor(){
         super()
-        this.state = {
-            activeIndex:'',
-            menuItem:'',
-            activeItem:'',
-        }
-    }
-   // setting props data to the state of Music component 
-    componentDidMount(){
-        this.setState((prevState)=>({
-            activeIndex:this.props.data.activeIndex,
-            menuItem:this.props.data.menuItem,
-            activeItem:this.props.data.activeItem
-        }))
     }
   
-    // add active class to the current selected button and remove the active class of previos active button
-    componentDidUpdate(prevProps,prevState){
-        let {menuItem,activeIndex,activeItem} = this.props.data
-        if(prevState.menuItem!=menuItem || prevState.activeIndex!=activeIndex){
-            this.setState({
-                activeIndex:this.props.data.activeIndex,
-                menuItem:this.props.data.menuItem,
-                activeItem:activeItem
-            })
-        }
-  
-        //getting the previous active button and remove active class
-        const activeButton = document.querySelector(`.active`);
-        if (activeButton!=null){
-            activeButton.classList.remove('active')
-        }
-        
-        //getting the current active button and adding active class to it
-        const Button = document.getElementsByClassName(`${activeItem}`)[0];
-        if(Button!=null){
-            Button.classList.add('active','nav-link');
-        }
-    }
-
    // render music component based on the menuItems
     render(){
-        let {songItems} = this.props.data
         return(
             <>
            <div className="menuContainer">
