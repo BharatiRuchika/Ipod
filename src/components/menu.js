@@ -5,6 +5,7 @@ class Menu extends Component{
         super()
     }
 
+    //rendering menu component
     render(){
         return (<><div className="menuContainer">
         <h3 style={{ marginLeft: '10px' }}>Ipod.js</h3>

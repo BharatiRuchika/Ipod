@@ -4,6 +4,7 @@ class Games extends Component{
         super()
     }
 
+    //rendering Games component
     render(){
         return (<div className="gamesContainer">
         <h6>Games</h6>

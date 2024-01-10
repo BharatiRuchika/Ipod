@@ -4,6 +4,7 @@ class Artists extends Component{
         super()
     }
 
+    //rendering Artists component
     render(){
         return (<div className="artists">
         <img src="https://repository-images.githubusercontent.com/319397144/c2b15580-38e5-11eb-81bf-97b8049bf168" />

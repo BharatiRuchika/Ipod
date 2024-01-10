@@ -3,6 +3,8 @@ class Settings extends React.Component{
     constructor(){
         super()
     }
+    
+    //rendering Settings component
     render(){
         return (<div className="settings">
         <h6>Settings</h6>

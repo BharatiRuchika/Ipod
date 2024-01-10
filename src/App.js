@@ -1,36 +1,34 @@
+// Importing necessary components and resources
 import Wheel from "./components/wheel";
 import React from "react";
 import Sidebar from "./components/sidebar";
 import Music from "./components/music";
 
-// Import songs
+// Importing songs
 import song1 from "./static/songs/Post Malone - White Iverson.mp3"
 import song2 from "./static/songs/John Denver - Country Roads.mp3"
 import song3 from "./static/songs/Sigrid - High Five.mp3"
 import song4 from "./static/songs/Khalid - Young Dumb Broke.mp3"
 import song5 from "./static/songs/Rick Astley - Never Gonna Give You Up.mp3"
 
-import song1Img from "./static/Post Malone - White Iverson.png";
-import song2Img from "./static/John Denver - Country Roads.jpg";
-import song3Img from "./static/Sigrid - High Five.png";
-import song4Img from "./static/Khalid - Young Dumb Broke.jpg";
-import song5Img from "./static/Never Gonna Give You Up.png";
-
+// Defining the main App component
 class App extends React.Component {
+  // Constructor to initialize the state
     constructor() {
       super()
       this.state = {
+        // Menu items and their initial state
         menu : ["coverflow", "music","games","settings"], //menu Items
         music:["allSongs","artists","albums"],
+        
+        // Initial active states
         activeIndex:0,  //Active list item
         activeMenu:'menu',         
-        isInnerMenu:false,
-        isSongMenu:false,
         menuItem:'menu',
         currentMenu:'menu',
         activeItem:'coverflow',
+        // Songs list and their initial states
         songItemsUrl: [song1, song2, song3, song4, song5],    //songs list
-        songImgItemsUrl: [song1Img, song2Img, song3Img, song4Img, song5Img],
         playing:false,
         songItems:[
             {'song-0':'Post Malone - White Iverson'},
@@ -40,15 +38,14 @@ class App extends React.Component {
             {'song-4':'Rick Astley - Never Gonna Give You Up'}
         ],
         songIndex: 0, //current song
-        activeSong:'song-0',
-        songImgUrl: song1Img,
-        songUrl: song1,  //current song url
-        activeMusic:0,    //index of active music
+        activeSong :'song-0',
+        activeMusic :0,    //index of active music
         audio: new Audio(song1), //current audio file
         currentAudio:new Audio(song1)
       }
     }
-
+ 
+    // Lifecycle method: ComponentDidMount
     componentDidMount(){
       let { menuItem, activeIndex, activeItem } = this.state
       const Button = document.getElementsByClassName(`${activeItem}`)[0];
@@ -56,8 +53,10 @@ class App extends React.Component {
           Button.classList.add('active', 'nav-link');
       }
     }
+
+    // Lifecycle method: ComponentDidUpdate
     componentDidUpdate(prevProps, prevState) {
-      console.log('im in app update')
+      // Update the active item and remove the 'active' class
       let { menuItem, activeIndex, activeItem ,activeSong} = this.state
       if (prevState.menuItem != menuItem || prevState.activeIndex != activeIndex) {
         this.setState(
@@ -67,20 +66,20 @@ class App extends React.Component {
               menuItem,
               activeItem
           }))
-
       }
+
       const activeButton = document.querySelector(`.active`);
       console.log('activeButton',activeButton)
       if (activeButton != null) {
-          activeButton.classList.remove('active')
+        activeButton.classList.remove('active')
       }
 
+       // Update the active item and add the 'active' class based on the current menu
       if(this.state.currentMenu=="allSongs"){
         const Button = document.getElementsByClassName(`${activeSong}`)[0];
-      console.log('Button',Button)
-      if (Button != null) {
+        if (Button != null) {
           Button.classList.add('active', 'nav-link');
-      }
+        }
       }else{
         const Button = document.getElementsByClassName(`${activeItem}`)[0];
         console.log('Button',Button)
@@ -90,41 +89,34 @@ class App extends React.Component {
     }
   }
 
-    // FUNCTION FOR : UPDATE ACTIVE MENU WHILE ROTATING ON THE TRACK-WHEEL
+    // Function to update the active menu while rotating on the track-wheel
     updateActiveMenu = (direction,menu) => {
-        let {isMenu, isInnerMenu, isSongMenu} = this.state
         let min = 0;
         let max = 0;
         let activeItem = ""
-        
         max = this.state[menu].length-1
-        // checking if isMenu is true or not
-          if (direction === 1) {
-            if (this.state.activeIndex >= max) {
-              this.setState({ activeIndex: min,activeItem:this.state[menu][min] })
-            } else {
-              let activeIndex = this.state.activeIndex + 1
-              activeItem = this.state[menu][activeIndex] 
-              this.setState({ activeIndex:activeIndex,activeItem:activeItem })
-            }
+        if (direction === 1) {
+          if (this.state.activeIndex >= max) {
+            this.setState({ activeIndex: min,activeItem:this.state[menu][min] })
           } else {
-            if (this.state.activeIndex <= min) {
-              this.setState({ activeIndex: max,activeItem:this.state[menu][max] })
-            } else {
-              let activeIndex = this.state.activeIndex - 1
-              activeItem = this.state[menu][activeIndex] 
-              this.setState({ activeIndex: activeIndex,activeItem:activeItem })
-            }
-          
+            let activeIndex = this.state.activeIndex + 1
+            activeItem = this.state[menu][activeIndex] 
+            this.setState({ activeIndex:activeIndex,activeItem:activeItem })
+          }
+        } else {
+          if (this.state.activeIndex <= min) {
+            this.setState({ activeIndex: max,activeItem:this.state[menu][max] })
+          } else {
+            let activeIndex = this.state.activeIndex - 1
+            activeItem = this.state[menu][activeIndex] 
+            this.setState({ activeIndex: activeIndex,activeItem:activeItem })
+          }
         }
       }
 
 
-    // FUNCTION FOR : CHANGE MENU BACKWARDS OR FORWARDS on PRESS OF CENTER BUTTON
+   // Function to change menu backward or forwards on the press of the center button
     handleClick = ()=>{
-      if(this.state.isSongMenu){
-        return
-      }
       let currentMenu = this.state.activeItem
       let activeItem = this.state.activeItem
       let activeMenu = this.state.activeMenu
@@ -157,7 +149,7 @@ class App extends React.Component {
       
     
    
-    // FUNCTION FOR : CHANGING MENU
+    // Function to change the active menu
     handleMenu = (menu)=>{
       if (menu=="menu"){
         return
@@ -187,12 +179,10 @@ class App extends React.Component {
             currentMenu:"menu"
           }))
       }
-      
-
     }
 
 
-  // FUNCTION FOR : TOGGLE SONG PLAY AND PAUSE
+  // Function to toggle song play and pause
   togglePlayPause = () => {
     console.log('im in togglePlayPause')
     if (this.state.playing === true) {
@@ -208,7 +198,7 @@ class App extends React.Component {
   }
 
 
-  // FUNCTION FOR : ON PRESS OF BACKWARD BUTTON TRACKS ARE SEEKED BACKWARD
+  // Function to handle backward seeking of tracks
   handleReverse=(e)=>{
     let min = 0
     let max = 4
@@ -223,9 +213,7 @@ class App extends React.Component {
     }
   }
 
-
-
-  // FUNCTION FOR : ON PRESS OF FORWARD BUTTON TRACKS ARE SEEKED FORWARD
+  // Function to handle forward seeking of tracks
   handleForward=(e)=>{
     let min = 0
     let max = 4
@@ -240,7 +228,7 @@ class App extends React.Component {
     }
   }
     
-  // FUNCTION FOR : RENDERING APP
+  // Rendering the App component
     render(){
       return(<div className="App">
         <Sidebar updateActive={this.updateActive} handleClick={this.handleClick} handleMenu={this.handleMenu} data={this.state}/>
