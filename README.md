@@ -43,25 +43,27 @@ Node.js and npm installed on your machine.
 
 2. Navigate to the project directory:
 
+   ```bash
    cd Ipod
 
-3. Install dependencies:
+4. Install dependencies:
+   ```bash
     npm install
 
 ### Usage
 
-1. Start the development server: npm start
-2. Open your browser and visit http://localhost:3000 to view the app.
+- Start the development server: npm start
+- Open your browser and visit http://localhost:3000 to view the app.
 
 ### Folder Structure
 The project structure is organized as follows:
 
-public/: Static assets and HTML template.
-src/: Source code of the React app.
-      -components/: React components.
-      -static/: Static files such as images and songs.
-      -css/: CSS files
-      -App.js: Main component.
+- public/: Static assets and HTML template.
+- src/: Source code of the React app.
+      - components/: React components.
+      - static/: Static files such as images and songs.
+      - css/: CSS files
+- \App.js: Main component.
 
 ### Built With
 React - JavaScript library for building user interfaces.
