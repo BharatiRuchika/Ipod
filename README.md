@@ -14,7 +14,6 @@ This project is a React-based iPod application that simulates the functionality 
 - [Folder Structure](#folder-structure)
 - [Built With](#built-with)
 - [Contributing](#contributing)
-- [License](#license)
 - [Acknowledgments](#acknowledgments)
 - [Live Link](#Live-Link)
 
