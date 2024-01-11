@@ -61,8 +61,8 @@ The project structure is organized as follows:
 - src/: Source code of the React app.
 
   * components/: React components.
-      * static/: Static files such as images and songs.
-      * css/: CSS files
+  * static/: Static files such as images and songs.
+  * css/: CSS files
 - \App.js: Main component.
 
 ### Built With
