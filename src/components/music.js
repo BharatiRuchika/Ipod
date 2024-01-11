@@ -1,7 +1,10 @@
 import React, {Component} from "react";
 import sidebar from "../css/sidebar.css"
 import music from "../css/music.css"
+
+// Defining the music component
 class Music extends Component{
+    // Constructor to initialize the state
     constructor(){
         super()
     }

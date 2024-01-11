@@ -69,7 +69,6 @@ class App extends React.Component {
       }
 
       const activeButton = document.querySelector(`.active`);
-      console.log('activeButton',activeButton)
       if (activeButton != null) {
         activeButton.classList.remove('active')
       }
@@ -82,7 +81,6 @@ class App extends React.Component {
         }
       }else{
         const Button = document.getElementsByClassName(`${activeItem}`)[0];
-        console.log('Button',Button)
         if (Button != null) {
           Button.classList.add('active', 'nav-link');
         }
@@ -184,7 +182,6 @@ class App extends React.Component {
 
   // Function to toggle song play and pause
   togglePlayPause = () => {
-    console.log('im in togglePlayPause')
     if (this.state.playing === true) {
       this.setState({ playing: false });
         this.state.audio.pause();
@@ -200,6 +197,10 @@ class App extends React.Component {
 
   // Function to handle backward seeking of tracks
   handleReverse=(e)=>{
+    let {activeMenu} = this.state
+    if(activeMenu=="menu" || activeMenu=="music" || activeMenu=="innerMenu"){
+      return
+    }
     let min = 0
     let max = 4
     if (this.state.songIndex <= min) {
@@ -215,6 +216,10 @@ class App extends React.Component {
 
   // Function to handle forward seeking of tracks
   handleForward=(e)=>{
+    let {activeMenu} = this.state
+    if(activeMenu=="menu" || activeMenu=="music" || activeMenu=="innerMenu"){
+      return
+    }
     let min = 0
     let max = 4
     if (this.state.songIndex >= max) {

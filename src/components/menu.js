@@ -1,6 +1,8 @@
 import { Component } from "react";
 
+// Defining the menu component
 class Menu extends Component{
+    // Constructor to initialize the state
     constructor(){
         super()
     }

@@ -2,7 +2,9 @@ import { Component } from "react";
 import wheel from "../css/wheel.css"
 import ZingTouch from 'zingtouch';
 
+// Defining the wheel component
 class Wheel extends Component {
+    // Constructor to initialize the state
     constructor() {
         super()
     }

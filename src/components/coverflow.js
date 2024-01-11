@@ -1,5 +1,8 @@
 import React, {Component} from "react";
+
+// Defining the coverflow component
 class Coverflow extends Component{
+    // Constructor to initialize the state
     constructor(){
         super()
     }

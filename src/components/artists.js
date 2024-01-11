@@ -1,5 +1,8 @@
 import React, {Component} from "react";
+
+// Defining the artists component
 class Artists extends Component{
+    // Constructor to initialize the state
     constructor(){
         super()
     }

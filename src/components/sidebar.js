@@ -8,7 +8,10 @@ import Settings from "./settings";
 import Coverflow from "./coverflow";
 import Menu from "./menu";
 import Songs from "./songs";
+
+// Defining the sidebar component
 class Sidebar extends React.Component {
+    // Constructor to initialize the state
     constructor() {
         super()
     }

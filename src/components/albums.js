@@ -1,5 +1,8 @@
 import React, {Component} from "react";
+
+// Defining the albums component
 class Albums extends Component{
+    // Constructor to initialize the state
     constructor(){
         super()
     }

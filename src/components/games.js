@@ -1,5 +1,8 @@
 import React, {Component} from "react";
+
+// Defining games component
 class Games extends Component{
+    // Constructor to initialize the state
     constructor(){
         super()
     }

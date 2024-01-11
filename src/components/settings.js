@@ -1,5 +1,8 @@
 import React from "react";
+
+// Defining the settings component
 class Settings extends React.Component{
+    // Constructor to initialize the state
     constructor(){
         super()
     }
