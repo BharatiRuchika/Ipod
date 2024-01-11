@@ -32,7 +32,7 @@ These instructions will help you get a copy of the project up and running on you
 
 ### Prerequisites
 
-- Node.js and npm installed on your machine.
+Node.js and npm installed on your machine.
 
 ### Installation
 
