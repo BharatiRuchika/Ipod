@@ -16,7 +16,7 @@ This project is a React-based iPod application that simulates the functionality 
 - [Contributing](#contributing)
 - [License](#license)
 - [Acknowledgments](#acknowledgments)
-- [Live Link](#LiveLink)
+- [Live Link](#Live-Link)
 
 ### Features
 
